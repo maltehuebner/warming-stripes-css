@@ -2,55 +2,46 @@
 
 namespace Maltehuebner\WarmingStripesCss\Converter;
 
+use Maltehuebner\WarmingStripesCss\Converter\Image\ColorPicker;
+use Maltehuebner\WarmingStripesCss\Converter\Image\ImageFactory;
+
 require_once '../vendor/autoload.php';
 
 $filename = $argv[1];
 
 $stripeList = [];
 
-$im = imagecreatefrompng($filename);
-
-$im = imagescale($im, 100);
-
-$imageWidth = imagesx($im);
+$image = ImageFactory::createFromFile($filename);
 
 $currentColor = null;
 $width = 1;
 
-for ($x = 0; $x < $imageWidth; ++$x) {
-  $rgb = imagecolorat($im, $x, 0);
+for ($x = 0; $x < 100; ++$x) {
+    $color = ColorPicker::color($image, $x);
 
-  $color = new Color(
-    ($rgb >> 16) & 0xFF,
-    ($rgb >> 8) & 0xFF,
-    $rgb & 0xFF
-  );
+    if (!$currentColor) {
+        $currentColor = $color;
+    }
 
-  if (!$currentColor) {
-    $currentColor = $color;
-  }
-
-  if ($currentColor === $color) {
-    ++$width;
-  } else {
-    $stripeList[] = new Stripe($color, $width);
-    $width = 1;
-    $currentColor = null;
-  }
+    if ($currentColor === $color) {
+        ++$width;
+    } else {
+        $stripeList[] = new Stripe($color, $width);
+        $width = 1;
+        $currentColor = null;
+    }
 }
 
-imagedestroy($im);
-
-$factor = 100 / $imageWidth;
+ImageFactory::destroy($image);
 
 $position = 0;
 
 foreach ($stripeList as $key => $stripe) {
-  $width = $stripe->getWidth() * $factor;
+    $width = $stripe->getWidth();
 
-  $stripe->setWidth($width)->setPosition($position);
+    $stripe->setWidth($width)->setPosition($position);
 
-  $position += $width;
+    $position += $width;
 }
 
 echo join($stripeList, ', ');
