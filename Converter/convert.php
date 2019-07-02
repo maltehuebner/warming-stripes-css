@@ -1,5 +1,9 @@
 <?php declare(strict_types=1);
 
+namespace Maltehuebner\WarmingStripesCss\Converter;
+
+require_once '../vendor/autoload.php';
+
 $stripeList = [];
 
 $im = imagecreatefrompng('./stripes.png');

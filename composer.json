@@ -1,0 +1,15 @@
+{
+    "name": "maltehuebner/warming-stripes-css",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malte Hübner",
+            "email": "maltehuebner@gmx.org"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Maltehuebner\\WarmingStripesCss\\Converter\\": "Converter/" }
+    }
+}
