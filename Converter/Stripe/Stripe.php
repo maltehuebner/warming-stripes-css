@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Maltehuebner\WarmingStripesCss\Converter;
+namespace Maltehuebner\WarmingStripesCss\Converter\Stripe;
+
+use Maltehuebner\WarmingStripesCss\Converter\Image\Color;
 
 class Stripe
 {

@@ -2,8 +2,6 @@
 
 namespace Maltehuebner\WarmingStripesCss\Converter\Image;
 
-use Maltehuebner\WarmingStripesCss\Converter\Color;
-
 class ColorPicker
 {
     private function __construct()

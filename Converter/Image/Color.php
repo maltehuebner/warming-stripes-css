@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Maltehuebner\WarmingStripesCss\Converter;
+namespace Maltehuebner\WarmingStripesCss\Converter\Image;
 
 class Color
 {
