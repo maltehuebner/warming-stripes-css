@@ -4,9 +4,11 @@ namespace Maltehuebner\WarmingStripesCss\Converter;
 
 require_once '../vendor/autoload.php';
 
+$filename = $argv[1];
+
 $stripeList = [];
 
-$im = imagecreatefrompng('./stripes.png');
+$im = imagecreatefrompng($filename);
 
 $im = imagescale($im, 100);
 
@@ -36,6 +38,8 @@ for ($x = 0; $x < $imageWidth; ++$x) {
     $currentColor = null;
   }
 }
+
+imagedestroy($im);
 
 $factor = 100 / $imageWidth;
 
